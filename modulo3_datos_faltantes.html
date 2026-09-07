@@ -1,0 +1,1353 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Módulo 3: Visualización de datos interactivos &#8212; Visualización de datos interactivos</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=78d55cf8"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script src="_static/translations.js?v=d190bf04"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo3_datos_faltantes';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Saltar al contenido principal</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Volver arriba</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Advertencia de versión"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Navegación del sitio">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="En esta página">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Visualización de datos interactivos</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Módulo 3: Visualización de datos interactivos
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Mateochang82/TRABAJO7SEP" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Mateochang82/TRABAJO7SEP/issues/new?title=Issue%20on%20page%20%2Fmodulo3_datos_faltantes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/modulo3_datos_faltantes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Tema" data-bs-title="Tema"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Claro"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Oscuro"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="Sistema"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Módulo 3: Visualización de datos interactivos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Módulo 3: Visualización de datos interactivos</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-datos-faltantes-y-atipicos">Tratamiento de datos faltantes y atípicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset">1. Carga del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-datos-faltantes">2. Diagnóstico de datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-datos-faltantes">Eliminación de datos faltantes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umbral-del-5">3. Umbral del 5 %</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otra-forma-de-eliminar-los-datos-faltantes">4. Otra forma de eliminar los datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-la-estructura-de-los-datos-variables-ya-vistas-en-clase">5. ¿Cambió la estructura de los datos? (variables ya vistas en clase)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experience-categorica">5.1 <code class="docutils literal notranslate"><span class="pre">Experience</span></code> (categórica)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-working-ratio-numerica">5.2 <code class="docutils literal notranslate"><span class="pre">Remote_Working_Ratio</span></code> (numérica)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tarea-verificar-el-resto-de-las-variables">TAREA: verificar el resto de las variables</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-verificacion">Funciones de verificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-working-year">A. <code class="docutils literal notranslate"><span class="pre">Working_Year</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-designation">B. <code class="docutils literal notranslate"><span class="pre">Designation</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-employment-status">C. <code class="docutils literal notranslate"><span class="pre">Employment_Status</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-employee-location">D. <code class="docutils literal notranslate"><span class="pre">Employee_Location</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-company-size">E. <code class="docutils literal notranslate"><span class="pre">Company_Size</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-salary-usd">F. <code class="docutils literal notranslate"><span class="pre">Salary_USD</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-la-verificacion">Resumen de la verificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-general">Conclusión general</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modulo-3-visualizacion-de-datos-interactivos">
+<h1>Módulo 3: Visualización de datos interactivos<a class="headerlink" href="#modulo-3-visualizacion-de-datos-interactivos" title="Link to this heading">#</a></h1>
+<section id="tratamiento-de-datos-faltantes-y-atipicos">
+<h2>Tratamiento de datos faltantes y atípicos<a class="headerlink" href="#tratamiento-de-datos-faltantes-y-atipicos" title="Link to this heading">#</a></h2>
+<p>Dataset: <code class="docutils literal notranslate"><span class="pre">ds_salaries.csv</span></code> — 607 filas, 8 columnas.</p>
+<hr class="docutils" />
+<section id="carga-del-dataset">
+<h3>1. Carga del dataset<a class="headerlink" href="#carga-del-dataset" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Cargar el archivo CSV proporcionado</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">"ds_salaries.csv"</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Informacion del dataset</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 607 entries, 0 to 606
+Data columns (total 8 columns):
+ #   Column                Non-Null Count  Dtype
+---  ------                --------------  -----
+ 0   Working_Year          595 non-null    float64
+ 1   Designation           600 non-null    object
+ 2   Experience            607 non-null    object
+ 3   Employment_Status     607 non-null    object
+ 4   Employee_Location     607 non-null    object
+ 5   Company_Size          607 non-null    object
+ 6   Remote_Working_Ratio  607 non-null    int64
+ 7   Salary_USD            597 non-null    float64
+dtypes: float64(2), int64(1), object(5)
+memory usage: 38.1+ KB
+</pre></div>
+</div>
+<p>Solo tres variables tienen datos faltantes: <code class="docutils literal notranslate"><span class="pre">Working_Year</span></code>, <code class="docutils literal notranslate"><span class="pre">Designation</span></code> y <code class="docutils literal notranslate"><span class="pre">Salary_USD</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="diagnostico-de-datos-faltantes">
+<h3>2. Diagnóstico de datos faltantes<a class="headerlink" href="#diagnostico-de-datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copia del dataset</span>
+<span class="n">df_va</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Revisar los datos faltantes en el conjunto de datos</span>
+<span class="n">missing_values</span> <span class="o">=</span> <span class="n">df_va</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de valores faltantes</span>
+<span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_va</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_va</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Crear un DataFrame con el análisis de datos faltantes</span>
+<span class="n">missing_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Valores Faltantes'</span><span class="p">:</span> <span class="n">missing_values</span><span class="p">,</span>
+    <span class="s1">'Porcentaje Faltante (%)'</span><span class="p">:</span> <span class="n">missing_percentage</span>
+<span class="p">})</span>
+
+<span class="n">missing_data</span>
+</pre></div>
+</div>
+<p><strong>Salida:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head text-right"><p>Valores Faltantes</p></th>
+<th class="head text-right"><p>Porcentaje Faltante (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Working_Year</p></td>
+<td class="text-right"><p>12</p></td>
+<td class="text-right"><p>1.98</p></td>
+</tr>
+<tr class="row-odd"><td><p>Designation</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p>1.15</p></td>
+</tr>
+<tr class="row-even"><td><p>Experience</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Employment_Status</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td><p>Employee_Location</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Company_Size</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td><p>Remote_Working_Ratio</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salary_USD</p></td>
+<td class="text-right"><p>10</p></td>
+<td class="text-right"><p>1.65</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="eliminacion-de-datos-faltantes">
+<h2>Eliminación de datos faltantes<a class="headerlink" href="#eliminacion-de-datos-faltantes" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p><strong>Regla del curso:</strong> para eliminar filas, el porcentaje de faltantes de la columna debe ser <strong>menor al 5 %</strong>. Ojo: lo que importa es la <strong>suma</strong> de faltantes por fila, porque al eliminar filas la estructura de los datos cambia y hay que verificar que las distribuciones no se alteren.</p>
+</div></blockquote>
+<section id="umbral-del-5">
+<h3>3. Umbral del 5 %<a class="headerlink" href="#umbral-del-5" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Coloquemos un umbral</span>
+<span class="n">umbral</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_va</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.05</span>   <span class="c1"># Por ejemplo, 5% del total de filas</span>
+
+<span class="c1"># Selecciona columnas con valores faltantes &lt;= umbral</span>
+<span class="n">cols_to_drop</span> <span class="o">=</span> <span class="n">df_va</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">missing_values</span> <span class="o">&lt;=</span> <span class="n">umbral</span><span class="p">]</span>
+
+<span class="c1"># Elimina filas con valores faltantes en las columnas seleccionadas</span>
+<span class="n">df_va</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">cols_to_drop</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">umbral</span> <span class="pre">=</span> <span class="pre">607</span> <span class="pre">*</span> <span class="pre">0.05</span> <span class="pre">=</span> <span class="pre">30.35</span></code>. Las tres columnas con NaN (12, 7 y 10) están por debajo del umbral, así que <strong>las 8 columnas</strong> entran en <code class="docutils literal notranslate"><span class="pre">cols_to_drop</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># informacion del dataset ajustado</span>
+<span class="n">df_va</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Resultado: <strong>578 filas</strong> (se eliminaron 29 filas, un 4.78 % del total).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisar los datos faltantes en el conjunto de datos</span>
+<span class="n">missing_values</span> <span class="o">=</span> <span class="n">df_va</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de valores faltantes</span>
+<span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_va</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_va</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">missing_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Valores Faltantes'</span><span class="p">:</span> <span class="n">missing_values</span><span class="p">,</span>
+    <span class="s1">'Porcentaje Faltante (%)'</span><span class="p">:</span> <span class="n">missing_percentage</span>
+<span class="p">})</span>
+
+<span class="n">missing_data</span>
+</pre></div>
+</div>
+<p>Todas las columnas quedan en 0 faltantes.</p>
+</section>
+<section id="otra-forma-de-eliminar-los-datos-faltantes">
+<h3>4. Otra forma de eliminar los datos faltantes<a class="headerlink" href="#otra-forma-de-eliminar-los-datos-faltantes" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># copia del dataset</span>
+<span class="n">df_2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># eliminar las filas con Nans</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df_2</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Revisar los datos faltantes en el conjunto de datos</span>
+<span class="n">missing_values</span> <span class="o">=</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Calcular el porcentaje de valores faltantes</span>
+<span class="n">missing_percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_clean</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_clean</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="n">missing_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Valores Faltantes'</span><span class="p">:</span> <span class="n">missing_values</span><span class="p">,</span>
+    <span class="s1">'Porcentaje Faltante (%)'</span><span class="p">:</span> <span class="n">missing_percentage</span>
+<span class="p">})</span>
+
+<span class="n">missing_data</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">df_clean</span></code> tiene <strong>578 filas</strong> y 0 faltantes: en este caso <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> sin argumentos produce exactamente el mismo resultado que el procedimiento con umbral, porque todas las columnas estaban por debajo del 5 %.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="cambio-la-estructura-de-los-datos-variables-ya-vistas-en-clase">
+<h2>5. ¿Cambió la estructura de los datos? (variables ya vistas en clase)<a class="headerlink" href="#cambio-la-estructura-de-los-datos-variables-ya-vistas-en-clase" title="Link to this heading">#</a></h2>
+<p>Al eliminar filas la estructura puede cambiar. Hay que comprobarlo con <strong>pruebas estadísticas</strong>, y la prueba depende del tipo de variable:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de variable</p></th>
+<th class="head"><p>Comparación gráfica</p></th>
+<th class="head"><p>Prueba estadística</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Categórica</p></td>
+<td><p>Barras agrupadas de frecuencias</p></td>
+<td><p>Chi-cuadrado de homogeneidad</p></td>
+</tr>
+<tr class="row-odd"><td><p>Numérica</p></td>
+<td><p>Curvas de densidad (KDE)</p></td>
+<td><p>Kolmogorov–Smirnov de 2 muestras</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="experience-categorica">
+<h3>5.1 <code class="docutils literal notranslate"><span class="pre">Experience</span></code> (categórica)<a class="headerlink" href="#experience-categorica" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Contar frecuencias en cada DataFrame</span>
+<span class="n">original_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Experience'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">clean_counts</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">'Experience'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Unir ambos conteos en un solo DataFrame</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">original_counts</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Original"</span><span class="p">),</span> <span class="n">clean_counts</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">"Limpio"</span><span class="p">)],</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Crear gráfico de barras agrupado</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Comparación de valores en 'Experience' antes y después de eliminar NaN"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Nivel de experiencia"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Frecuencia"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Dataset"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2_contingency</span>
+
+<span class="c1"># Alinear categorías para evitar errores</span>
+<span class="n">comparison_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">original_counts</span><span class="p">,</span> <span class="n">clean_counts</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                             <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">'Original'</span><span class="p">,</span> <span class="s1">'Limpio'</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Prueba chi-cuadrado</span>
+<span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">comparison_table</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Prueba Chi-cuadrado de homogeneidad"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estadístico chi²:"</span><span class="p">,</span> <span class="n">chi2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Grados de libertad:"</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Valor p:"</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad
+Estadístico chi²: 0.07153479107112373
+Grados de libertad: 3
+Valor p: 0.9950192620159025
+</pre></div>
+</div>
+<p>Hipótesis de la prueba de homogeneidad: <span class="math notranslate nohighlight">\(H_0: p_1 = p_2 = p_3 = p_4\)</span> (las proporciones de cada categoría son iguales antes y después). Con <span class="math notranslate nohighlight">\(p = 0.995 &gt; 0.05\)</span> <strong>no se rechaza <span class="math notranslate nohighlight">\(H_0\)</span></strong>: las proporciones no cambian.</p>
+</section>
+<section id="remote-working-ratio-numerica">
+<h3>5.2 <code class="docutils literal notranslate"><span class="pre">Remote_Working_Ratio</span></code> (numérica)<a class="headerlink" href="#remote-working-ratio-numerica" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="c1"># Ignorar warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+
+<span class="c1"># Crear gráfico de densidad</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Remote_Working_Ratio'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Original'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s1">'Remote_Working_Ratio'</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Limpio'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Distribución de 'Remote_Working_Ratio' antes y después de eliminar NaN"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Remote Working Ratio"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Densidad"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Dataset"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># PRUEBA KS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">ks_2samp</span>
+
+<span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">ks_2samp</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Remote_Working_Ratio'</span><span class="p">],</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">'Remote_Working_Ratio'</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Prueba Kolmogorov-Smirnov (KS) para 'Remote_Working_Ratio' "</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Estadístico KS:"</span><span class="p">,</span> <span class="n">stat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Valor p:"</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Hay diferencias significativas entre las dos distribuciones."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ No hay evidencia significativa de que las distribuciones sean diferentes."</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Kolmogorov-Smirnov (KS) para 'Remote_Working_Ratio'
+Estadístico KS: 0.0018469641951169458
+Valor p: 1.0
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="tarea-verificar-el-resto-de-las-variables">
+<h1>TAREA: verificar el resto de las variables<a class="headerlink" href="#tarea-verificar-el-resto-de-las-variables" title="Link to this heading">#</a></h1>
+<p>Las variables <code class="docutils literal notranslate"><span class="pre">Experience</span></code> y <code class="docutils literal notranslate"><span class="pre">Remote_Working_Ratio</span></code> ya se revisaron en clase. Faltan las seis restantes:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Prueba usada</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Working_Year</p></td>
+<td><p>Numérica discreta (3 años)</p></td>
+<td><p>Chi-cuadrado + KS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Designation</p></td>
+<td><p>Categórica (50 categorías)</p></td>
+<td><p>Chi-cuadrado</p></td>
+</tr>
+<tr class="row-even"><td><p>Employment_Status</p></td>
+<td><p>Categórica (4 categorías)</p></td>
+<td><p>Chi-cuadrado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Employee_Location</p></td>
+<td><p>Categórica (57 categorías)</p></td>
+<td><p>Chi-cuadrado</p></td>
+</tr>
+<tr class="row-even"><td><p>Company_Size</p></td>
+<td><p>Categórica (3 categorías)</p></td>
+<td><p>Chi-cuadrado</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salary_USD</p></td>
+<td><p>Numérica continua</p></td>
+<td><p>KS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Para no repetir el mismo bloque seis veces se definen dos funciones reutilizables.</p>
+<section id="funciones-de-verificacion">
+<h2>Funciones de verificación<a class="headerlink" href="#funciones-de-verificacion" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">chi2_contingency</span><span class="p">,</span> <span class="n">ks_2samp</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">comparar_categorica</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compara la distribución de una variable categórica antes/después de dropna().</span>
+
+<span class="sd">    Grafica barras agrupadas y aplica la prueba chi-cuadrado de homogeneidad.</span>
+<span class="sd">    `top` limita el gráfico a las categorías más frecuentes (solo visual).</span>
+<span class="sd">    """</span>
+    <span class="n">original_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+    <span class="n">clean_counts</span> <span class="o">=</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+    <span class="c1"># Alinear categorías para evitar errores: fillna(0) para las que desaparecen</span>
+    <span class="n">comparison</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">original_counts</span><span class="p">,</span> <span class="n">clean_counts</span><span class="p">],</span>
+                           <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="p">[</span><span class="s1">'Original'</span><span class="p">,</span> <span class="s1">'Limpio'</span><span class="p">])</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">grafico</span> <span class="o">=</span> <span class="n">comparison</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="k">if</span> <span class="n">top</span> <span class="k">else</span> <span class="n">comparison</span>
+    <span class="n">grafico</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">'bar'</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Comparación de valores en '</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">' antes y después de eliminar NaN"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Frecuencia"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">'right'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Dataset"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">chi2</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">chi2_contingency</span><span class="p">(</span><span class="n">comparison</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Prueba Chi-cuadrado de homogeneidad para '</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Estadístico chi²:"</span><span class="p">,</span> <span class="n">chi2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Grados de libertad:"</span><span class="p">,</span> <span class="n">dof</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Valor p:"</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="c1"># El chi-cuadrado exige frecuencias esperadas suficientes; se reporta para juzgar validez</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Frecuencia esperada mínima:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">expected</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Hay diferencias significativas entre las distribuciones."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ No hay evidencia significativa de que las distribuciones sean diferentes."</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">comparar_numerica</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compara la distribución de una variable numérica antes/después de dropna().</span>
+
+<span class="sd">    Grafica densidades superpuestas y aplica la prueba Kolmogorov-Smirnov.</span>
+<span class="sd">    Se usa .dropna() en el original porque kdeplot y ks_2samp no admiten NaN.</span>
+<span class="sd">    """</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Original'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Limpio'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Distribución de '</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">' antes y después de eliminar NaN"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Densidad"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Dataset"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">stat</span><span class="p">,</span> <span class="n">p_value</span> <span class="o">=</span> <span class="n">ks_2samp</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Prueba Kolmogorov-Smirnov (KS) para '</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Estadístico KS:"</span><span class="p">,</span> <span class="n">stat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Valor p:"</span><span class="p">,</span> <span class="n">p_value</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Media   original / limpio:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"/"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Mediana original / limpio:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="s2">"/"</span><span class="p">,</span> <span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Desv.   original / limpio:"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">"/"</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">p_value</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Hay diferencias significativas entre las dos distribuciones."</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"❌ No hay evidencia significativa de que las distribuciones sean diferentes."</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="a-working-year">
+<h2>A. <code class="docutils literal notranslate"><span class="pre">Working_Year</span></code><a class="headerlink" href="#a-working-year" title="Link to this heading">#</a></h2>
+<p>Aunque es <code class="docutils literal notranslate"><span class="pre">float64</span></code>, solo toma tres valores (2020, 2021, 2022), así que se puede tratar como categórica ordinal. Se aplican ambas pruebas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_categorica</span><span class="p">(</span><span class="s1">'Working_Year'</span><span class="p">)</span>
+<span class="n">comparar_numerica</span><span class="p">(</span><span class="s1">'Working_Year'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Working_Year barras" src="figuras/working_year.png" /></p>
+<p><img alt="Working_Year densidad" src="figuras/working_year_kde.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad para 'Working_Year'
+Estadístico chi²: 0.14144865...
+Grados de libertad: 2
+Valor p: 0.9317186...
+Frecuencia esperada mínima: 68.0
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+
+Prueba Kolmogorov-Smirnov (KS) para 'Working_Year'
+Estadístico KS: 0.006822...
+Valor p: 1.0
+Media   original / limpio: 2021.4 / 2021.42
+Mediana original / limpio: 2022.0 / 2022.0
+Desv.   original / limpio: 0.7 / 0.69
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Año</p></th>
+<th class="head text-right"><p>Original (%)</p></th>
+<th class="head text-right"><p>Limpio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2022</p></td>
+<td class="text-right"><p>52.44</p></td>
+<td class="text-right"><p>53.11</p></td>
+</tr>
+<tr class="row-odd"><td><p>2021</p></td>
+<td class="text-right"><p>35.46</p></td>
+<td class="text-right"><p>35.47</p></td>
+</tr>
+<tr class="row-even"><td><p>2020</p></td>
+<td class="text-right"><p>12.10</p></td>
+<td class="text-right"><p>11.42</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>. Es la variable con más faltantes (12) y aun así el corrimiento máximo es de 0.68 puntos porcentuales en 2022.</p>
+</section>
+<hr class="docutils" />
+<section id="b-designation">
+<h2>B. <code class="docutils literal notranslate"><span class="pre">Designation</span></code><a class="headerlink" href="#b-designation" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_categorica</span><span class="p">(</span><span class="s1">'Designation'</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Designation" src="figuras/designation.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad para 'Designation'
+Estadístico chi²: 0.7188657...
+Grados de libertad: 49
+Valor p: 1.0
+Frecuencia esperada mínima: 0.98
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Designation</p></th>
+<th class="head text-right"><p>Original (%)</p></th>
+<th class="head text-right"><p>Limpio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data Scientist</p></td>
+<td class="text-right"><p>23.67</p></td>
+<td class="text-right"><p>24.22</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Engineer</p></td>
+<td class="text-right"><p>21.83</p></td>
+<td class="text-right"><p>21.45</p></td>
+</tr>
+<tr class="row-even"><td><p>Data Analyst</p></td>
+<td class="text-right"><p>16.17</p></td>
+<td class="text-right"><p>15.92</p></td>
+</tr>
+<tr class="row-odd"><td><p>Machine Learning Engineer</p></td>
+<td class="text-right"><p>6.50</p></td>
+<td class="text-right"><p>6.57</p></td>
+</tr>
+<tr class="row-even"><td><p>Research Scientist</p></td>
+<td class="text-right"><p>2.67</p></td>
+<td class="text-right"><p>2.25</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>.</p>
+<blockquote>
+<div><p><strong>Advertencia estadística:</strong> con 50 categorías, el 61 % de las frecuencias esperadas es menor a 5 y la mínima es 0.98. El supuesto del chi-cuadrado (esperadas ≥ 5) <strong>no se cumple</strong>, así que el valor p exacto no es confiable. La comparación de proporciones sí lo respalda: ninguna categoría se mueve más de 0.55 puntos porcentuales.</p>
+</div></blockquote>
+</section>
+<hr class="docutils" />
+<section id="c-employment-status">
+<h2>C. <code class="docutils literal notranslate"><span class="pre">Employment_Status</span></code><a class="headerlink" href="#c-employment-status" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_categorica</span><span class="p">(</span><span class="s1">'Employment_Status'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Employment_Status" src="figuras/employment_status.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad para 'Employment_Status'
+Estadístico chi²: 0.0258690...
+Grados de libertad: 3
+Valor p: 0.9989020...
+Frecuencia esperada mínima: 3.9
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Estado</p></th>
+<th class="head text-right"><p>Original (%)</p></th>
+<th class="head text-right"><p>Limpio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FT (tiempo completo)</p></td>
+<td class="text-right"><p>96.87</p></td>
+<td class="text-right"><p>96.89</p></td>
+</tr>
+<tr class="row-odd"><td><p>PT (medio tiempo)</p></td>
+<td class="text-right"><p>1.65</p></td>
+<td class="text-right"><p>1.56</p></td>
+</tr>
+<tr class="row-even"><td><p>CT (contrato)</p></td>
+<td class="text-right"><p>0.82</p></td>
+<td class="text-right"><p>0.87</p></td>
+</tr>
+<tr class="row-odd"><td><p>FL (freelance)</p></td>
+<td class="text-right"><p>0.66</p></td>
+<td class="text-right"><p>0.69</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>. La variable no tenía NaN propios, así que solo se ve afectada por las filas eliminadas por otras columnas. Nota: las categorías FL y CT tienen esperadas &lt; 5, mismo caveat que arriba, pero con desviaciones de 0.09 pp o menos.</p>
+</section>
+<hr class="docutils" />
+<section id="d-employee-location">
+<h2>D. <code class="docutils literal notranslate"><span class="pre">Employee_Location</span></code><a class="headerlink" href="#d-employee-location" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_categorica</span><span class="p">(</span><span class="s1">'Employee_Location'</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Employee_Location" src="figuras/employee_location.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad para 'Employee_Location'
+Estadístico chi²: 2.4554684...
+Grados de libertad: 56
+Valor p: 1.0
+Frecuencia esperada mínima: 0.49
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>País</p></th>
+<th class="head text-right"><p>Original (%)</p></th>
+<th class="head text-right"><p>Limpio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>US</p></td>
+<td class="text-right"><p>54.70</p></td>
+<td class="text-right"><p>55.19</p></td>
+</tr>
+<tr class="row-odd"><td><p>GB</p></td>
+<td class="text-right"><p>7.25</p></td>
+<td class="text-right"><p>7.27</p></td>
+</tr>
+<tr class="row-even"><td><p>IN</p></td>
+<td class="text-right"><p>4.94</p></td>
+<td class="text-right"><p>5.19</p></td>
+</tr>
+<tr class="row-odd"><td><p>CA</p></td>
+<td class="text-right"><p>4.78</p></td>
+<td class="text-right"><p>4.84</p></td>
+</tr>
+<tr class="row-even"><td><p>DE</p></td>
+<td class="text-right"><p>4.12</p></td>
+<td class="text-right"><p>3.81</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>. Mismo caveat que <code class="docutils literal notranslate"><span class="pre">Designation</span></code>: 57 categorías y 78 % de esperadas &lt; 5, por lo que la evidencia fuerte aquí es la tabla de proporciones (máximo corrimiento: 0.49 pp en US), no el valor p.</p>
+</section>
+<hr class="docutils" />
+<section id="e-company-size">
+<h2>E. <code class="docutils literal notranslate"><span class="pre">Company_Size</span></code><a class="headerlink" href="#e-company-size" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_categorica</span><span class="p">(</span><span class="s1">'Company_Size'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Company_Size" src="figuras/company_size.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Chi-cuadrado de homogeneidad para 'Company_Size'
+Estadístico chi²: 0.0118589...
+Grados de libertad: 2
+Valor p: 0.9940881...
+Frecuencia esperada mínima: 78.53
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tamaño</p></th>
+<th class="head text-right"><p>Original (%)</p></th>
+<th class="head text-right"><p>Limpio (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>M (mediana)</p></td>
+<td class="text-right"><p>53.71</p></td>
+<td class="text-right"><p>53.98</p></td>
+</tr>
+<tr class="row-odd"><td><p>L (grande)</p></td>
+<td class="text-right"><p>32.62</p></td>
+<td class="text-right"><p>32.53</p></td>
+</tr>
+<tr class="row-even"><td><p>S (pequeña)</p></td>
+<td class="text-right"><p>13.67</p></td>
+<td class="text-right"><p>13.49</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>. Aquí el chi-cuadrado sí es plenamente válido (esperada mínima 78.53).</p>
+</section>
+<hr class="docutils" />
+<section id="f-salary-usd">
+<h2>F. <code class="docutils literal notranslate"><span class="pre">Salary_USD</span></code><a class="headerlink" href="#f-salary-usd" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">comparar_numerica</span><span class="p">(</span><span class="s1">'Salary_USD'</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Salary_USD" src="figuras/salary_usd.png" /></p>
+<p><strong>Salida:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Prueba Kolmogorov-Smirnov (KS) para 'Salary_USD'
+Estadístico KS: 0.0068623...
+Valor p: 1.0
+Media   original / limpio: 106911.44 / 106989.75
+Mediana original / limpio: 97489.0 / 98271.0
+Desv.   original / limpio: 67087.27 / 67350.92
+❌ No hay evidencia significativa de que las distribuciones sean diferentes.
+</pre></div>
+</div>
+<p><strong>Conclusión:</strong> la distribución <strong>no cambia</strong>. La media se mueve un 0.07 % y la mediana un 0.80 %; las dos curvas de densidad se superponen casi por completo, conservando la asimetría a la derecha típica de los salarios.</p>
+</section>
+<hr class="docutils" />
+<section id="resumen-de-la-verificacion">
+<h2>Resumen de la verificación<a class="headerlink" href="#resumen-de-la-verificacion" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Prueba</p></th>
+<th class="head text-right"><p>Estadístico</p></th>
+<th class="head text-right"><p>gl</p></th>
+<th class="head text-right"><p>Valor p</p></th>
+<th class="head"><p>¿Cambia la distribución?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Experience <em>(clase)</em></p></td>
+<td><p>Categórica</p></td>
+<td><p>Chi²</p></td>
+<td class="text-right"><p>0.0715</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.9950</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Remote_Working_Ratio <em>(clase)</em></p></td>
+<td><p>Numérica</p></td>
+<td><p>KS</p></td>
+<td class="text-right"><p>0.0018</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-even"><td><p>Working_Year</p></td>
+<td><p>Num. discreta</p></td>
+<td><p>Chi² / KS</p></td>
+<td class="text-right"><p>0.1414 / 0.0068</p></td>
+<td class="text-right"><p>2 / —</p></td>
+<td class="text-right"><p>0.9317 / 1.0000</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Designation</p></td>
+<td><p>Categórica</p></td>
+<td><p>Chi²</p></td>
+<td class="text-right"><p>0.7189</p></td>
+<td class="text-right"><p>49</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td><p>No*</p></td>
+</tr>
+<tr class="row-even"><td><p>Employment_Status</p></td>
+<td><p>Categórica</p></td>
+<td><p>Chi²</p></td>
+<td class="text-right"><p>0.0259</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-right"><p>0.9989</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Employee_Location</p></td>
+<td><p>Categórica</p></td>
+<td><p>Chi²</p></td>
+<td class="text-right"><p>2.4555</p></td>
+<td class="text-right"><p>56</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td><p>No*</p></td>
+</tr>
+<tr class="row-even"><td><p>Company_Size</p></td>
+<td><p>Categórica</p></td>
+<td><p>Chi²</p></td>
+<td class="text-right"><p>0.0119</p></td>
+<td class="text-right"><p>2</p></td>
+<td class="text-right"><p>0.9941</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salary_USD</p></td>
+<td><p>Numérica</p></td>
+<td><p>KS</p></td>
+<td class="text-right"><p>0.0069</p></td>
+<td class="text-right"><p>—</p></td>
+<td class="text-right"><p>1.0000</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>* Valor p poco confiable por frecuencias esperadas bajas (muchas categorías); la conclusión se sostiene en la comparación directa de proporciones.</p>
+<section id="conclusion-general">
+<h3>Conclusión general<a class="headerlink" href="#conclusion-general" title="Link to this heading">#</a></h3>
+<p>En <strong>ninguna</strong> de las ocho variables se rechaza la hipótesis nula (<span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>). Eliminar las 29 filas con datos faltantes (<strong>4.78 %</strong> del total, por debajo del umbral del 5 %) <strong>no altera la estructura del conjunto de datos</strong>: ni las proporciones de las variables categóricas ni las distribuciones de las numéricas.</p>
+<p>Sin embargo, se debe señalar una limitación en dos casos. Designation tiene 50 categorías y Employee_Location tiene 57, y en ambas la mayoría de las frecuencias esperadas quedó por debajo de 5 (61 % y 78 % de las celdas respectivamente). Como el chi-cuadrado exige frecuencias esperadas suficientes, en estas dos variables el valor p no es confiable por sí solo. Por eso se comparo directamente las proporciones y comprobamos que ninguna categoría se desplaza más de 0.55 puntos porcentuales, que es la evidencia en la que realmentenos da para concluir que no hubo cambio.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Módulo 3: Visualización de datos interactivos</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tratamiento-de-datos-faltantes-y-atipicos">Tratamiento de datos faltantes y atípicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-del-dataset">1. Carga del dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostico-de-datos-faltantes">2. Diagnóstico de datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-datos-faltantes">Eliminación de datos faltantes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umbral-del-5">3. Umbral del 5 %</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otra-forma-de-eliminar-los-datos-faltantes">4. Otra forma de eliminar los datos faltantes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-la-estructura-de-los-datos-variables-ya-vistas-en-clase">5. ¿Cambió la estructura de los datos? (variables ya vistas en clase)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experience-categorica">5.1 <code class="docutils literal notranslate"><span class="pre">Experience</span></code> (categórica)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remote-working-ratio-numerica">5.2 <code class="docutils literal notranslate"><span class="pre">Remote_Working_Ratio</span></code> (numérica)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tarea-verificar-el-resto-de-las-variables">TAREA: verificar el resto de las variables</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones-de-verificacion">Funciones de verificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-working-year">A. <code class="docutils literal notranslate"><span class="pre">Working_Year</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#b-designation">B. <code class="docutils literal notranslate"><span class="pre">Designation</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#c-employment-status">C. <code class="docutils literal notranslate"><span class="pre">Employment_Status</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-employee-location">D. <code class="docutils literal notranslate"><span class="pre">Employee_Location</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#e-company-size">E. <code class="docutils literal notranslate"><span class="pre">Company_Size</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#f-salary-usd">F. <code class="docutils literal notranslate"><span class="pre">Salary_USD</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-de-la-verificacion">Resumen de la verificación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-general">Conclusión general</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Mateo Chang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
