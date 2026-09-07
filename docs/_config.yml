@@ -1,0 +1,26 @@
+title: "Visualización de datos interactivos"
+author: "Mateo Chang"
+copyright: "2026"
+
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"
+
+repository:
+  url: https://github.com/Mateochang82/TRABAJO7SEP
+  path_to_book: docs
+  branch: main
+
+html:
+  use_repository_button: true
+  use_issues_button: true
+
+parse:
+  myst_enable_extensions:
+    - dollarmath
+    - amsmath
+
+sphinx:
+  config:
+    language: es
